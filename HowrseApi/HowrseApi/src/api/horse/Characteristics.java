@@ -10,18 +10,27 @@ public class Characteristics {
 	 * <br>
 	 * (String, because there are just to many and Java 8 allows switch(String) )
 	 */
-	public String Race;
+	public String race;
 	
 	/**
 	 * Species
 	 * <br>
 	 * (String, because -> {@link #Race} )
 	 */
-	public String Species;
+	public String species;
 	
 	/**
 	 * Gender
 	 */
-	public GENDER gender;
+	public Gender gender;
+	
+	/**
+	 * Hide
+	 * <br>
+	 * (String, because -> {@link #Race} )
+	 */
+	public String hide;
+	
+	
 	
 }

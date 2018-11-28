@@ -1,6 +1,6 @@
 package api.horse;
 
-public enum GENDER {
+public enum Gender {
 
 	MALE,
 	FEMALE,

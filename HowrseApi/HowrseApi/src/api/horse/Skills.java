@@ -9,37 +9,37 @@ public class Skills {
 	/**
 	 * Stamina
 	 */
-	public float Stamina;
+	public float stamina;
 	
 	/**
 	 * Speed
 	 */
-	public float Speed;
+	public float speed;
 	
 	/**
 	 * Dressage
 	 */
-	public float Dressage;
+	public float dressage;
 	
 	/**
 	 * Gallop
 	 */
-	public float Gallop;
+	public float gallop;
 	
 	/**
 	 * Trot
 	 */
-	public float Trot;
+	public float trot;
 	
 	/**
 	 * Jump
 	 */
-	public float Jump;
+	public float jump;
 	
 	/**
 	 * Total
 	 */
 	public float Total() {
-		return Stamina + Speed + Dressage + Gallop + Trot + Jump;
+		return stamina + speed + dressage + gallop + trot + jump;
 	}
 }
