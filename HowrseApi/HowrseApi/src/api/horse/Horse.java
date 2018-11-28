@@ -7,6 +7,8 @@ import java.util.Set;
  */
 public class Horse {
 
+	// TODO Care, Night, Rideout, Training, Competitions, Breeding
+	
 	/**
 	 * Name of the cutie ;)
 	 */
