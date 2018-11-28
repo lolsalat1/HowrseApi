@@ -1,5 +1,7 @@
 package api.horse;
 
+import api.player.Player;
+
 /**
  * 	Race, Species, Gender, Hide, Breeder, Age, Size, Weight, Birthday, Inventory
  */
@@ -32,5 +34,27 @@ public class Characteristics {
 	public String hide;
 	
 	
+	/**
+	 * Breeder
+	 */
+	public Player breeder;
 	
+	/**
+	 * Age
+	 */
+	public int age;
+	
+	/**
+	 * Size
+	 */
+	public int size;
+	
+	/**
+	 * Weight
+	 */
+	public int weight;
+	
+	/**
+	 * Birthday
+	 */
 }
