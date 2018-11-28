@@ -1,6 +1,8 @@
 package api.horse;
 
 import api.player.Player;
+import utils.Age;
+import utils.Date;
 
 /**
  * 	Race, Species, Gender, Hide, Breeder, Age, Size, Weight, Birthday, Inventory
@@ -42,7 +44,7 @@ public class Characteristics {
 	/**
 	 * Age
 	 */
-	public int age;
+	public Age age;
 	
 	/**
 	 * Size
@@ -57,4 +59,10 @@ public class Characteristics {
 	/**
 	 * Birthday
 	 */
+	public Date birthday;
+
+	/**
+	 * Inventory
+	 */
+	public Inventory inventory;
 }

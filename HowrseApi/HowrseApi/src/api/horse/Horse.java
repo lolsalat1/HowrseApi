@@ -14,4 +14,9 @@ public class Horse {
 	 * skills of your horse
 	 */
 	public Skills skills;
+	
+	/**
+	 * Characteristics
+	 */
+	public Characteristics characteristics;
 }
