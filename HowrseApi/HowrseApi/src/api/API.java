@@ -31,6 +31,13 @@ public class API {
 	}
 	
 	/**
+	 * Generates a sessionprod 4 you
+	 */
+	public void generateSessionProd() throws ApiException{
+		requests.ApiGetRequest(requests.apiUrl, this);
+	}
+	
+	/**
 	 * Not everyone plays on the same Server
 	 */
 	public SERVER_COUNTRY locale;

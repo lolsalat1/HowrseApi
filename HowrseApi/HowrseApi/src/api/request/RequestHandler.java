@@ -1,16 +1,25 @@
 package api.request;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.http.Header;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import com.google.gson.JsonParser;
+
 import api.API;
-import api.Account;
 import api.ApiException;
+import api.request.requests.DefaultResponse;
 
 /**
  * Handles requests (WOW)
@@ -122,19 +131,78 @@ public class RequestHandler {
 	public CloseableHttpClient httpclient;
 	
 	/**
+	 * Reads a response to String
+	 */
+	public static String read(CloseableHttpResponse res) throws IOException {
+        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(res.getEntity().getContent()))) {
+            return buffer.lines().collect(Collectors.joining("\n"));
+        } finally {
+        	res.close();
+        }
+    }
+	
+	/**
+	 * Fires a request with default-response
+	 */
+	public DefaultResponse ApiDefaultRequest (String url, List<NameValuePair> parameters, API api) throws ApiException {
+		try {
+			return new DefaultResponse(new JsonParser().parse(read(ApiRequest(url, parameters, api))).getAsJsonObject(), api);
+		} catch(ApiException a) {
+			throw a;
+		} catch(Exception e) {
+			throw new ApiException(e, "Error handling default request");
+		}
+	}
+	
+	/**
 	 * Fires a request
 	 */
-	public CloseableHttpResponse ApiRequest(String url, List<NameValuePair> parameters, Account account) throws ApiException {
+	public CloseableHttpResponse ApiGetRequest(String url,API api) throws ApiException {
+		try {
+			HttpGet get = new HttpGet(apiUrl + url );
+			
+			get.setHeader("host", apiHost);
+			get.setHeader("User-Agent", api.useragent);
+			if(api.sessionprod != null)
+				get.setHeader("Cookie", "sessionprod=" + api.sessionprod + ";");
+			
+			CloseableHttpResponse response = httpclient.execute(get);
+			
+			for(Header h : response.getHeaders("Set-Cookie")) {
+				if(h.getValue().contains("sessionprod=")) {
+					api.updateSessionProd(h.getValue().split("sessionprod=")[1].split(";")[0]);
+				}
+			}
+			
+			return response;
+		} catch(Exception e) {
+			throw new ApiException(e, "Couldn't send API-Request");
+		}
+	}
+	
+	/**
+	 * Fires a request
+	 */
+	public CloseableHttpResponse ApiRequest(String url, List<NameValuePair> parameters, API api) throws ApiException {
 		try {
 			HttpPost post = new HttpPost(apiUrl + url);
 			
 			post.setHeader("host", apiHost);
-			post.setHeader("User-Agent", account.api.useragent);
-			post.setHeader("Cookie", "sessionprod=" + account.api.sessionprod + ";");
+			post.setHeader("User-Agent", api.useragent);
+			if(api.sessionprod != null)
+				post.setHeader("Cookie", "sessionprod=" + api.sessionprod + ";");
 			
 			post.setEntity(new UrlEncodedFormEntity(parameters));
 			
-			return httpclient.execute(post);
+			CloseableHttpResponse response = httpclient.execute(post);
+			
+			for(Header h : response.getHeaders("Set-Cookie")) {
+				if(h.getValue().contains("sessionprod=")) {
+					api.updateSessionProd(h.getValue().split("sessionprod=")[1].split(";")[0]);
+				}
+			}
+			
+			return response;
 		} catch(Exception e) {
 			throw new ApiException(e, "Couldn't send API-Request");
 		}
