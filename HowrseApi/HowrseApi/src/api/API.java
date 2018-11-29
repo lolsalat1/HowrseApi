@@ -1,7 +1,11 @@
 package api;
 
+import java.util.HashMap;
+
 import api.request.RequestHandler;
 import api.request.requests.DefaultResponse;
+import api.request.requests.GetBreedsRequest;
+import api.request.requests.GetBreedsRequest.GetBreedsResponse;
 import api.request.requests.LoginRequest;
 
 /**
@@ -33,9 +37,16 @@ public class API {
 	 * Logs you in
 	 */
 	public DefaultResponse doLogin(String username, String password) throws ApiException{
-		generateSessionprod();
 		String parameter_name = LoginRequest.getParameterName(this);
 		return LoginRequest.fireRequest(username, password, parameter_name, this);
+	}
+	
+	/**
+	 * Updates breeds
+	 */
+	public HashMap<Integer, Breed> getBreeds() throws ApiException {
+		GetBreedsResponse response = GetBreedsRequest.fireRequest(this);
+		return response.breeds;
 	}
 	
 	/**
@@ -50,7 +61,7 @@ public class API {
 	 * Generates a sessionprod 4 you
 	 */
 	public void generateSessionprod() throws ApiException{
-		requests.ApiGetRequest(requests.apiUrl, this);
+		requests.ApiGetRequest("", this);
 	}
 	
 	/**

@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 
 import api.API;
 import api.ApiException;
+import api.request.RequestHandler;
 
 /**
  * A response that consists of "errorsText", "messageText", "errors", "message" and "redirection"
@@ -29,6 +30,15 @@ public class DefaultResponse {
 			if(json.has("externalRedirection")) 
 				if(json.get("externalRedirection").getAsInt() == 1) 
 					redirection = api.requests.apiUrl + redirection;
+			
+			if(RequestHandler.debug) {
+				System.out.println("DefaultResponse (" + sucess +  "):");
+				System.out.println("\terrorsText=" + errorsText);
+				System.out.println("\tmessageText=" + messageText);
+				System.out.println("\terrors=" + errors);
+				System.out.println("\tmessage=" + message);
+				System.out.println("\tredirection=" + redirection);
+			}
 		} catch(Exception e) {
 			throw new ApiException(e, "Error parsing response");
 		}

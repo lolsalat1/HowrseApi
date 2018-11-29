@@ -10,6 +10,14 @@ public class Horse {
 	// TODO Care, Night, Rideout, Training, Competitions, Breeding, EquestrianCenter
 	
 	/**
+	 * Id and name is enough at first, and if you want more the id does a great job
+	 */
+	public Horse(String name, int id) {
+		this.name = name;
+		this.id = id;
+	}
+	
+	/**
 	 * Name of the cutie ;)
 	 */
 	public String name;

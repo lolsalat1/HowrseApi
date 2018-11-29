@@ -116,6 +116,11 @@ public class RequestHandler {
 	}
 	
 	/**
+	 * Debug
+	 */
+	public static boolean debug = true;
+	
+	/**
 	 * Api url
 	 */
 	public String apiUrl;
@@ -157,8 +162,23 @@ public class RequestHandler {
 	/**
 	 * Fires a request
 	 */
+	public String ApiGetString(String url,API api) throws ApiException {
+		try {
+			return read(ApiGetRequest(url, api));
+		} catch(IOException e) {
+			throw new ApiException(e, "Couldn't fire GET request");
+		}
+	}
+	
+	/**
+	 * Fires a request
+	 */
 	public CloseableHttpResponse ApiGetRequest(String url,API api) throws ApiException {
 		try {
+			
+			if(debug)
+				System.out.println("GET " + url);
+			
 			HttpGet get = new HttpGet(apiUrl + url );
 			
 			get.setHeader("host", apiHost);
@@ -185,6 +205,12 @@ public class RequestHandler {
 	 */
 	public CloseableHttpResponse ApiRequest(String url, List<NameValuePair> parameters, API api) throws ApiException {
 		try {
+			if(debug){
+				System.out.println("POST " + url + ":");
+				for(NameValuePair p : parameters)
+					System.out.println("\t" + p.getName() + "=" + p.getValue());
+			}
+			
 			HttpPost post = new HttpPost(apiUrl + url);
 			
 			post.setHeader("host", apiHost);

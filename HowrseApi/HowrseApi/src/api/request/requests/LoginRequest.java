@@ -8,7 +8,6 @@ import org.apache.http.message.BasicNameValuePair;
 
 import api.API;
 import api.ApiException;
-import api.request.RequestHandler;
 
 public class LoginRequest {
 
@@ -37,12 +36,8 @@ public class LoginRequest {
 	}
 	
 	public static String getParameterName(API api) throws ApiException {
-		try {
-			String response = RequestHandler.read(api.requests.ApiGetRequest("", api));
-			return response.split("id=\"authentification")[2].split("\"")[0];
-		} catch (Exception e) {
-			throw new ApiException(e, "Couldn't get Parametername");
-		}
+		String response = api.requests.ApiGetString("", api);
+		return response.split("id=\"authentification")[2].split("\"")[0];
 	}
 	
 }
