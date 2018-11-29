@@ -7,6 +7,11 @@ import api.request.RequestHandler;
  */
 public class API {
 
+	public API(SERVER_COUNTRY locale) {
+		this.locale = locale;
+		requests = new RequestHandler(this);
+	}
+	
 	/**
 	 * Sessionprod (some kind of session token)
 	 */
@@ -23,6 +28,14 @@ public class API {
 	public RequestHandler requests;
 	
 	/**
+	 * Logs you in
+	 */
+	public void doLogin(String username, String password) throws ApiException{
+		generateSessionprod();
+		
+	}
+	
+	/**
 	 * Sometimes your sessionprod changes, so updating it might be a good idea
 	 */
 	public void updateSessionProd(String sp) {
@@ -33,7 +46,7 @@ public class API {
 	/**
 	 * Generates a sessionprod 4 you
 	 */
-	public void generateSessionProd() throws ApiException{
+	public void generateSessionprod() throws ApiException{
 		requests.ApiGetRequest(requests.apiUrl, this);
 	}
 	

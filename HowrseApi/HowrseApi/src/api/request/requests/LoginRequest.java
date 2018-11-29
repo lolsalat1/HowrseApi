@@ -1,5 +1,6 @@
 package api.request.requests;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import api.API;
 import api.ApiException;
+import api.request.RequestHandler;
 
 public class LoginRequest {
 
@@ -33,6 +35,15 @@ public class LoginRequest {
 		parameters.add(new BasicNameValuePair("redirection", api.requests.apiUrl));
 		
 		return api.requests.ApiDefaultRequest(REQUEST_URL, parameters, api);
+	}
+	
+	public static String getParameterName(API api) throws ApiException {
+		try {
+			String response = RequestHandler.read(api.requests.ApiGetRequest("", api));
+			return response.split("id=\"authentification")[2].split("\"")[0];
+		} catch (Exception e) {
+			throw new ApiException(e, "Couldn't get Parametername");
+		}
 	}
 	
 }
