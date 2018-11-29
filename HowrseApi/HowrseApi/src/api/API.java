@@ -1,6 +1,8 @@
 package api;
 
 import api.request.RequestHandler;
+import api.request.requests.DefaultResponse;
+import api.request.requests.LoginRequest;
 
 /**
  * Top level implementation of request handling and stuff like that
@@ -30,9 +32,10 @@ public class API {
 	/**
 	 * Logs you in
 	 */
-	public void doLogin(String username, String password) throws ApiException{
+	public DefaultResponse doLogin(String username, String password) throws ApiException{
 		generateSessionprod();
-		
+		String parameter_name = LoginRequest.getParameterName(this);
+		return LoginRequest.fireRequest(username, password, parameter_name, this);
 	}
 	
 	/**
