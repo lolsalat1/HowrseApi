@@ -13,6 +13,11 @@ public class API {
 	public String sessionprod;
 	
 	/**
+	 * Useragent
+	 */
+	public String useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0";
+	
+	/**
 	 * Requesthandler
 	 */
 	public RequestHandler requests;
@@ -25,4 +30,41 @@ public class API {
 			sessionprod = sp;
 	}
 	
+	/**
+	 * Not everyone plays on the same Server
+	 */
+	public SERVER_COUNTRY locale;
+	
+	/**
+	 * Server you play on
+	 */
+	public static enum SERVER_COUNTRY {
+		WORLDWIDE,
+		US, // USA
+		GB, // Great Britain 
+		AU,	// Australia
+		CA, // Canada
+		DE, // Germany
+		FR, // France
+		ES, // Spain
+		PT, // Portugal
+		BR, // Brazil
+		IL, // Israel
+		RU, // Russia ma fränd
+		IT, // Italy
+		NL, // Netherlands
+		SE, // Sweeden
+		PL, // Poland
+		CZ, // Check Republic
+		DK, // Denmark
+		FI, // Finnland
+		NO, // Norway
+		AR, // Arabia
+		HU, // Hungary
+		RO, // Romania
+		BG, // Belgium
+		SI, // Slovenia
+		SK  // Slovakia
+		
+	}
 }
