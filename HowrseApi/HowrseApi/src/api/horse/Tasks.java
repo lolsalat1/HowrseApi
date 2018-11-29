@@ -1,19 +1,21 @@
 package api.horse;
 
+import api.horse.task.Age;
 import api.horse.task.Carrot;
 import api.horse.task.Drink;
 import api.horse.task.Feed;
 import api.horse.task.Groom;
 import api.horse.task.Mash;
 import api.horse.task.Play;
+import api.horse.task.Sleep;
 import api.horse.task.Stroke;
 
 /**
  * Take good care of your horses :)
  */
-public class Care {
+public class Tasks {
 
-	// , Mash, Spielen
+	// Pferdeäpfel Mission Flasche_geben Apfel Verwandlung Ultraschall
 	
 	/**
 	 * Feed
@@ -49,5 +51,15 @@ public class Care {
 	 * Play
 	 */
 	public Play play;
+	
+	/**
+	 * Sleep
+	 */
+	public Sleep sleep;
+	
+	/**
+	 * Age
+	 */
+	public Age age;
 	
 }

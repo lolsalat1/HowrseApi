@@ -40,6 +40,11 @@ public class Horse {
 	public Characteristics characteristics;
 	
 	/**
+	 * Tasks
+	 */
+	public Tasks tasks;
+	
+	/**
 	 * Boni the horse enjoys
 	 */
 	public Set<Bonus> boni;
