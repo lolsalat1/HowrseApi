@@ -7,6 +7,7 @@ import api.API.SERVER_COUNTRY;
 import api.Account;
 import api.Breed;
 import api.horse.Horse;
+import api.request.RequestHandler;
 import api.request.requests.DefaultResponse;
 
 public class ApiTest {
@@ -19,7 +20,9 @@ public class ApiTest {
 		try {
 			Account account = new Account();
 			account.api = new API(locale);
-		
+			
+			RequestHandler.debug = false;
+			
 			DefaultResponse response = account.api.doLogin(username, password);
 			
 			if(response.sucess)
@@ -27,6 +30,7 @@ public class ApiTest {
 			
 			for(Breed b : account.api.getBreeds().values()) {
 				System.out.println(b.name + " (" + b.id + "):");
+				b.updateHorses(account.api);
 				for(Horse h : b.horses.values()) {
 					System.out.println("\t" + h.name + " (" + h.id + ")");
 				}

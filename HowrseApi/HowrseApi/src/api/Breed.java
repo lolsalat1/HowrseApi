@@ -51,7 +51,14 @@ public class Breed {
 				SearchHorseResponse res = SearchHorseRequest.sendRequestSimple(SORT.nonne, FILTER.all, api);
 				horses = res.horses;
 			} else {
-				// TODO
+				
+				SearchHorseResponse res1 = SearchHorseRequest.seachBreed(id, 0, api);
+				horses = res1.horses;
+				int pages = res1.pages;
+				for(int i = 1; i < pages; i++) {
+					SearchHorseResponse res = SearchHorseRequest.seachBreed(id, i, api);
+					horses.putAll(res.horses);
+				}
 			}
 		} catch(Exception e) {
 			throw new ApiException(e, "Couldn't update horses");

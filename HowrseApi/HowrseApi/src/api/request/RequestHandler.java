@@ -118,7 +118,7 @@ public class RequestHandler {
 	/**
 	 * Debug
 	 */
-	public static boolean debug = true;
+	public static boolean debug = false;
 	
 	/**
 	 * Api url
