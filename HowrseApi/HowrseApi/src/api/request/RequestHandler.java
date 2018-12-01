@@ -27,6 +27,8 @@ import api.request.requests.DefaultResponse;
 public class RequestHandler {
 
 	public RequestHandler(API api) {
+		lastRequest = System.currentTimeMillis();
+		
 		switch(api.locale) {
 		case AR:
 			apiUrl = "https://ar.howrse.com/";
@@ -116,6 +118,29 @@ public class RequestHandler {
 	}
 	
 	/**
+	 * Sets a timeout
+	 */
+	public void setTimeout(long timeout) {
+		this.timeout = timeout;
+		hasTimeout = timeout > 0;
+	}
+	
+	/**
+	 * Whether a timeout is set
+	 */
+	public boolean hasTimeout;
+	
+	/**
+	 * Timeout between requests
+	 */
+	public long timeout;
+	
+	/**
+	 * Last request
+	 */
+	public long lastRequest;
+	
+	/**
 	 * Debug
 	 */
 	public static boolean debug = false;
@@ -175,6 +200,10 @@ public class RequestHandler {
 	 */
 	public CloseableHttpResponse ApiGetRequest(String url,API api) throws ApiException {
 		try {
+			if(hasTimeout)
+			while(System.currentTimeMillis() - timeout < lastRequest) {
+				Thread.sleep(10);
+			}
 			
 			if(debug)
 				System.out.println("GET " + url);
@@ -205,6 +234,12 @@ public class RequestHandler {
 	 */
 	public CloseableHttpResponse ApiRequest(String url, List<NameValuePair> parameters, API api) throws ApiException {
 		try {
+			
+			if(hasTimeout)
+			while(System.currentTimeMillis() - timeout < lastRequest) {
+				Thread.sleep(10);
+			}
+			
 			if(debug){
 				System.out.println("POST " + url + ":");
 				for(NameValuePair p : parameters)

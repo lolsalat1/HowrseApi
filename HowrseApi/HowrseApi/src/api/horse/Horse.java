@@ -183,7 +183,7 @@ public class Horse {
 			tasks.play.available = !split1[1].contains("jouer action-disabled");
 			tasks.sleep.available = !(split1[1].contains("coucher-box action-disabled") || split1[1].contains("coucher action-disabled"));
 			tasks.stroke.available = !split1[1].contains("caresser action-disabled");
-			tasks.suckle.available = characteristics.age.years == 0 && characteristics.age.months <= 6 && !split1[1].contains("allaiter action-disabled");
+			tasks.suckle.available = characteristics.age.years == 0 && characteristics.age.months < 6 && !split1[1].contains("allaiter action-disabled");
 			
 			
 		
