@@ -75,4 +75,12 @@ public class DefaultResponse {
 	 * Sucess
 	 */
 	public boolean sucess;
+
+	@Override
+	public String toString() {
+		return "DefaultResponse [errorsText=" + errorsText + ", messageText=" + messageText + ", errors=" + errors
+				+ ", message=" + message + ", redirection=" + redirection + ", sucess=" + sucess + "]";
+	}
+	
+	
 }
