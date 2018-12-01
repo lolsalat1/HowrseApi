@@ -134,7 +134,16 @@ public class Horse {
 			characteristics.weight = Integer.parseInt(vars.get("chevalPoids"));
 			
 			// Tasks
-			// TODO all
+			tasks.age.available = !split1[1].contains("vieillir action-disabled");
+			tasks.carrot.available = !split1[1].contains("carotte action-disabled");
+			tasks.drink.available = !split1[1].contains("boire action-disabled");
+			tasks.feed.available = true; // TODO
+			tasks.groom.available =!(split1[1].contains("panser-rainbow action-disabled") || split1[1].contains("panser action-disabled"));
+			tasks.mash.available = true; // TODO
+			tasks.play.available = !split1[1].contains("jouer action-disabled");
+			tasks.sleep.available = !(split1[1].contains("coucher-box action-disabled") || split1[1].contains("coucher action-disabled"));
+			tasks.stroke.available = !split1[1].contains("caresser action-disabled");
+			tasks.suckle.available = characteristics.age.years == 0 && characteristics.age.months <= 6 && !split1[1].contains("allaiter action-disabled");
 			
 			// Boni
 			// TODO all

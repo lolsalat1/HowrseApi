@@ -1,5 +1,7 @@
 package api.horse;
 
+import api.API;
+import api.ApiException;
 import api.horse.task.Age;
 import api.horse.task.Carrot;
 import api.horse.task.Drink;
@@ -9,13 +11,15 @@ import api.horse.task.Mash;
 import api.horse.task.Play;
 import api.horse.task.Sleep;
 import api.horse.task.Stroke;
+import api.horse.task.Suckle;
+import api.request.requests.DefaultResponse;
 
 /**
  * Take good care of your horses :)
  */
 public class Tasks {
 
-	// Pferdeäpfel Mission Flasche_geben Apfel Verwandlung Ultraschall Training
+	// Pferdeäpfel Mission Apfel Verwandlung Ultraschall Training
 	
 	public Tasks() {
 		feed = new Feed();
@@ -27,6 +31,12 @@ public class Tasks {
 		play = new Play();
 		sleep = new Sleep();
 		age = new Age();
+		suckle = new Suckle();
+	}
+	
+	
+	public DefaultResponse doDrink(Horse horse, API api) throws ApiException{
+		return drink.performTask(horse, api);
 	}
 	
 	/**
@@ -73,5 +83,10 @@ public class Tasks {
 	 * Age
 	 */
 	public Age age;
+	
+	/**
+	 * Suckle
+	 */
+	public Suckle suckle;
 	
 }
