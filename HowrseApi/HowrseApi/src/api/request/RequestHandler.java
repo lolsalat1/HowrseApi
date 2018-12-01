@@ -204,7 +204,7 @@ public class RequestHandler {
 			while(System.currentTimeMillis() - timeout < lastRequest) {
 				Thread.sleep(10);
 			}
-			
+			lastRequest = System.currentTimeMillis();
 			if(debug)
 				System.out.println("GET " + url);
 			
@@ -239,7 +239,7 @@ public class RequestHandler {
 			while(System.currentTimeMillis() - timeout < lastRequest) {
 				Thread.sleep(10);
 			}
-			
+			lastRequest = System.currentTimeMillis();
 			if(debug){
 				System.out.println("POST " + url + ":");
 				for(NameValuePair p : parameters)
