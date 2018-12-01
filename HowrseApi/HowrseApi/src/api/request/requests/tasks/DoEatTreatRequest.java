@@ -14,7 +14,6 @@ public class DoEatTreatRequest {
 		String response = api.requests.ApiGetString("elevage/chevaux/cheval?id=" + horseId, api);
 		String[] split = response.split("id=\"form-do-eat-treat-carotte");
 
-		
 		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
 		
 		parameters.add(new BasicNameValuePair(split[2].split("\"")[0], api.sessionprod));
