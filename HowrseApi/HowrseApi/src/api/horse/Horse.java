@@ -28,6 +28,7 @@ public class Horse {
 		characteristics = new Characteristics();
 		tasks = new Tasks();
 		boni = new HashSet<Bonus>();
+		missions = new Missions();
 	}
 	
 	/**
@@ -69,6 +70,11 @@ public class Horse {
 	 * Boni the horse enjoys
 	 */
 	public Set<Bonus> boni;
+	
+	/**
+	 * Missions your horse can do
+	 */
+	public Missions missions;
 
 	// Let the fun begin
 	/**
@@ -158,15 +164,33 @@ public class Horse {
 			tasks.age.available = !split1[1].contains("vieillir action-disabled");
 			tasks.carrot.available = !split1[1].contains("carotte action-disabled");
 			tasks.drink.available = !split1[1].contains("boire action-disabled");
-			tasks.feed.available = true; // TODO
+			String heySliderSplit = split1[1].split("\"#feedingHayQuantityJoueur\"")[0];
+			tasks.feed.maxHey = 22 - heySliderSplit.split("green disabled").length - heySliderSplit.split("green hiddenNumber disabled").length;
+			tasks.feed.suggestedHey = heySliderSplit.split("alternative blue").length - 1;
+			
+			String[] tmp = split1[1].split("#feedingOatsQuantityJoueur");
+			if(tmp.length > 1) {
+				tasks.feed.hasOats = true;
+				String oatsSliderSplit = tmp[0];
+				tasks.feed.maxOats = 17 - oatsSliderSplit.split("green disabled").length - oatsSliderSplit.split("green hiddenNumber disabled").length;
+				tasks.feed.suggestedOats = oatsSliderSplit.split("alternative blue").length -1;
+			} else {
+				tasks.feed.hasOats = false;
+			}
+			tasks.feed.available = tasks.feed.maxHey > 0 || tasks.feed.maxOats > 0;
 			tasks.groom.available =!(split1[1].contains("panser-rainbow action-disabled") || split1[1].contains("panser action-disabled"));
-			tasks.mash.available = true; // TODO
+			tasks.mash.available = !split1[1].contains("mash action-disabled") && characteristics.age.years >= 2;
 			tasks.play.available = !split1[1].contains("jouer action-disabled");
 			tasks.sleep.available = !(split1[1].contains("coucher-box action-disabled") || split1[1].contains("coucher action-disabled"));
 			tasks.stroke.available = !split1[1].contains("caresser action-disabled");
 			tasks.suckle.available = characteristics.age.years == 0 && characteristics.age.months <= 6 && !split1[1].contains("allaiter action-disabled");
 			
+			
+		
 			// Boni
+			// TODO all
+			
+			// Missions
 			// TODO all
 			
 		} catch(Exception e) {

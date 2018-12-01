@@ -22,6 +22,8 @@ public class DefaultResponse {
 			if(json.has("errors")) {
 				errors = json.get("errors").getAsJsonArray();
 				sucess = errors.size() == 0;
+			} else {
+				sucess = json.has("redirection");
 			}
 			if(json.has("message"))
 				message = json.get("message");
