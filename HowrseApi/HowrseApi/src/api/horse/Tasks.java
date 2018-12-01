@@ -15,7 +15,19 @@ import api.horse.task.Stroke;
  */
 public class Tasks {
 
-	// Pferdeäpfel Mission Flasche_geben Apfel Verwandlung Ultraschall
+	// Pferdeäpfel Mission Flasche_geben Apfel Verwandlung Ultraschall Training
+	
+	public Tasks() {
+		feed = new Feed();
+		drink = new Drink();
+		stroke = new Stroke();
+		groom = new Groom();
+		carrot = new Carrot();
+		mash = new Mash();
+		play = new Play();
+		sleep = new Sleep();
+		age = new Age();
+	}
 	
 	/**
 	 * Feed

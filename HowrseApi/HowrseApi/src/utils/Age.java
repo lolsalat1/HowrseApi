@@ -5,6 +5,10 @@ package utils;
  */
 public class Age {
 
+	public Age(int months) {
+		add(months);
+	}
+	
 	/**
 	 * Years
 	 */

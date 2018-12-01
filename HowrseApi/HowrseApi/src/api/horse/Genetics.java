@@ -2,6 +2,11 @@ package api.horse;
 
 public class Genetics {
 
+	public Genetics() {
+		potential = new Skills();
+		excellence = new Skills();
+	}
+	
 	/**
 	 * Potential
 	 */

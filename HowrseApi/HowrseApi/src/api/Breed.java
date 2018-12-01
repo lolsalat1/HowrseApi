@@ -53,6 +53,8 @@ public class Breed {
 			} else {
 				
 				SearchHorseResponse res1 = SearchHorseRequest.seachBreed(id, 0, api);
+				if(horses != null)
+					horses.clear();
 				horses = res1.horses;
 				int pages = res1.pages;
 				for(int i = 1; i < pages; i++) {

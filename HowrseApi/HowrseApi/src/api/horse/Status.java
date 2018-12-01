@@ -16,6 +16,11 @@ public class Status {
 	public float health;
 
 	/**
+	 * Moral
+	 */
+	public float moral;
+	
+	/**
 	 * Time
 	 */
 	public int time;
