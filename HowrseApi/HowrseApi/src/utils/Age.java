@@ -24,7 +24,7 @@ public class Age {
 	 */
 	public void add(int months) {
 		this.months += months;
-		while(this.months > 12) {
+		while(this.months >= 12) {
 			this.years ++;
 			this.months -= 12;
 		}
@@ -37,4 +37,11 @@ public class Age {
 		this.years += years;
 		add(months); // ya I'm lazy
 	}
+
+	@Override
+	public String toString() {
+		return "Age [years=" + years + ", months=" + months + "]";
+	}
+	
+	
 }
