@@ -66,5 +66,10 @@ public class Breed {
 			throw new ApiException(e, "Couldn't update horses");
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Breed [id=" + id + ", name=" + name + "]";
+	}
 	
 }
