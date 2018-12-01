@@ -84,7 +84,13 @@ public class Horse {
 			HashMap<String, String> vars = new HashMap<String, String>();
 			for(String s : split1[0].split("var ")) {
 				String name = s.split(" ")[0];
-				String value = s.split("=")[1].split(";")[0];
+				
+				String value = null;
+				try{
+					value = s.split("= ")[1].split(";")[0];
+				} catch(Exception e) {
+					
+				}
 				vars.put(name, value);
 			}
 			
@@ -125,7 +131,22 @@ public class Horse {
 			characteristics.age = new Age(Integer.parseInt(vars.get("chevalAge")));
 			// TODO birthday
 			// TODO breeder
-			characteristics.gender = Gender.valueOf(vars.get("chevalSexe").replace("\'", "").toUpperCase());
+			switch (vars.get("chevalSexe").replace("\'", "").toUpperCase()) {
+				case "FEMININ": {
+					characteristics.gender = Gender.FEMALE;
+					break;
+				}
+				
+				case "MASCULIN": {
+					characteristics.gender = Gender.MALE;
+					break;
+				}
+				
+				default:{
+					characteristics.gender = Gender.UNKNOWN;
+					break;
+				}
+			}
 			// TODO hide
 			// TODO inventory
 			// TODO race

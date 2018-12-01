@@ -33,6 +33,14 @@ public class ApiTest {
 				b.updateHorses(account.api);
 				for(Horse h : b.horses.values()) {
 					System.out.println("\t" + h.name + " (" + h.id + ")");
+					h.updateHorse(account.api);
+					if(h.tasks.drink.available) {
+						if(h.tasks.drink.performTask(h, account.api).sucess) {
+							System.out.println("DRINK OK");
+						} else {
+							System.out.println("DRINK FAIL");
+						}
+					}
 				}
 			}
 			
