@@ -23,7 +23,7 @@ public class DefaultResponse {
 				errors = json.get("errors").getAsJsonArray();
 				sucess = errors.size() == 0;
 			} else {
-				sucess = json.has("redirection") && json.get("redirection").getAsString().contains("login");
+				sucess = json.has("redirection") && json.get("redirection").getAsString().contains("site/logIn?publicite=1");
 			}
 			if(json.has("message"))
 				message = json.get("message");
