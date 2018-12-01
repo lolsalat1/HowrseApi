@@ -21,7 +21,7 @@ public class ApiTest {
 			Account account = new Account();
 			account.api = new API(locale);
 			
-			RequestHandler.debug = false;
+			RequestHandler.debug = true;
 			
 			DefaultResponse response = account.api.doLogin(username, password);
 			
@@ -34,11 +34,35 @@ public class ApiTest {
 				for(Horse h : b.horses.values()) {
 					System.out.println("\t" + h.name + " (" + h.id + ")");
 					h.updateHorse(account.api);
+					
 					if(h.tasks.drink.available) {
 						if(h.tasks.drink.performTask(h, account.api).sucess) {
 							System.out.println("DRINK OK");
 						} else {
 							System.out.println("DRINK FAIL");
+						}
+					}
+					if(h.tasks.stroke.available) {
+						if(h.tasks.stroke.performTask(h, account.api).sucess) {
+							System.out.println("STROKE OK");
+						} else {
+							System.out.println("STROKE FAIL");
+						}
+					}
+					
+					if(h.tasks.groom.available) {
+						if(h.tasks.groom.performTask(h, account.api).sucess) {
+							System.out.println("GROOM OK");
+						} else {
+							System.out.println("GROOM FAIL");
+						}
+					}
+					
+					if(h.tasks.carrot.available) {
+						if(h.tasks.carrot.performTask(h, account.api).sucess) {
+							System.out.println("CARROT OK");
+						} else {
+							System.out.println("CARROT FAIL");
 						}
 					}
 				}

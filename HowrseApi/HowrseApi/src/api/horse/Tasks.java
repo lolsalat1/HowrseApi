@@ -34,6 +34,13 @@ public class Tasks {
 		suckle = new Suckle();
 	}
 	
+	public DefaultResponse doCarrot(Horse horse, API api) throws ApiException {
+		return carrot.performTask(horse, api);
+	}
+	
+	public DefaultResponse doGroom(Horse horse, API api) throws ApiException {
+		return groom.performTask(horse, api);
+	}
 	
 	public DefaultResponse doDrink(Horse horse, API api) throws ApiException{
 		return drink.performTask(horse, api);

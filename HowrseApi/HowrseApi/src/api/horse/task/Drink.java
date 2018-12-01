@@ -4,7 +4,7 @@ import api.API;
 import api.ApiException;
 import api.horse.Horse;
 import api.request.requests.DefaultResponse;
-import api.request.requests.tasks.DoDrinkRequest;
+import api.request.requests.tasks.DefaultTaskRequest;
 
 public class Drink extends Task {
 
@@ -14,7 +14,7 @@ public class Drink extends Task {
 	}
 	
 	public DefaultResponse performTask(Horse horse, API api) throws ApiException{
-		return DoDrinkRequest.fireRequest(horse.id, api);
+		return DefaultTaskRequest.doRequest("elevage/chevaux/doDrink", "drink", horse.id, api);
 	}
 	
 }
