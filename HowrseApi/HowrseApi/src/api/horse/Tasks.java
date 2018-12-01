@@ -39,6 +39,10 @@ public class Tasks {
 		return drink.performTask(horse, api);
 	}
 	
+	public DefaultResponse doStroke(Horse horse, API api) throws ApiException{
+		return stroke.performTask(horse, api);
+	}
+	
 	/**
 	 * Feed
 	 */
