@@ -16,7 +16,7 @@ public class DoEatTreatRequest {
 
 		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
 		
-		parameters.add(new BasicNameValuePair(split[2].split("\"")[0], api.sessionprod));
+		parameters.add(new BasicNameValuePair(split[2].split("\"")[0].toLowerCase(), api.sessionprod));
 		parameters.add(new BasicNameValuePair("friandise", type));
 		parameters.add(new BasicNameValuePair("id", ""+horseId));
 		

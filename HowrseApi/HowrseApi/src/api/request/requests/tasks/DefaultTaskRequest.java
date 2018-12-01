@@ -19,10 +19,10 @@ public class DefaultTaskRequest {
 		
 		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
 		
-		parameters.add(new BasicNameValuePair(split[2].split("\"")[0], api.sessionprod));
-		parameters.add(new BasicNameValuePair(split[3].split("\"")[0], "" + horseId));
-		parameters.add(new BasicNameValuePair(split[4].split("\"")[0], "" + new Random().nextInt(80)));
-		parameters.add(new BasicNameValuePair(split[5].split("\"")[0], "" + new Random().nextInt(80)));
+		parameters.add(new BasicNameValuePair(split[2].split("\"")[0].toLowerCase(), api.sessionprod));
+		parameters.add(new BasicNameValuePair(split[3].split("\"")[0].toLowerCase(), "" + horseId));
+		parameters.add(new BasicNameValuePair(split[4].split("\"")[0].toLowerCase(), "" + new Random().nextInt(80)));
+		parameters.add(new BasicNameValuePair(split[5].split("\"")[0].toLowerCase(), "" + new Random().nextInt(80)));
 		
 		return api.requests.ApiDefaultRequest(command, parameters, api);
 	}
