@@ -21,7 +21,7 @@ public class Feed extends Task{
 	
 	public DefaultResponse performTask(Horse h, API api) throws ApiException {
 		if(hasOats) {
-			return DoFeedRequest.doRequest(suggestedHey, maxOats > 0 ? 1 : suggestedOats, h.id, api);
+			return DoFeedRequest.doRequest(suggestedHey, suggestedOats, h.id, api);
 		} else {
 			return DoFeedRequest.doRequestSimple(suggestedHey, h.id, api);
 		}
