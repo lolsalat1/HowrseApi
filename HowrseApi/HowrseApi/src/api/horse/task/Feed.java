@@ -20,6 +20,10 @@ public class Feed extends Task{
 	}
 	
 	public DefaultResponse performTask(Horse h, API api) throws ApiException {
+		if(suggestedOats > maxOats)
+			suggestedOats = maxOats;
+		if(suggestedHey > maxHey)
+			suggestedHey = maxHey;
 		if(hasOats) {
 			return DoFeedRequest.doRequest(suggestedHey, suggestedOats, h.id, api);
 		} else {
