@@ -4,6 +4,7 @@ import api.API;
 import api.ApiException;
 import api.horse.task.Age;
 import api.horse.task.Carrot;
+import api.horse.task.CentreMission;
 import api.horse.task.Drink;
 import api.horse.task.Feed;
 import api.horse.task.Groom;
@@ -32,6 +33,7 @@ public class Tasks {
 		sleep = new Sleep();
 		age = new Age();
 		suckle = new Suckle();
+		centreMission = new CentreMission();
 	}
 	
 	public DefaultResponse doCarrot(Horse horse, API api) throws ApiException {
@@ -99,5 +101,10 @@ public class Tasks {
 	 * Suckle
 	 */
 	public Suckle suckle;
+	
+	/**
+	 * Centre Mission
+	 */
+	public CentreMission centreMission;
 	
 }

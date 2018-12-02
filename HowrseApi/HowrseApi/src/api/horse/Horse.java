@@ -28,7 +28,6 @@ public class Horse {
 		characteristics = new Characteristics();
 		tasks = new Tasks();
 		boni = new HashSet<Bonus>();
-		missions = new Missions();
 	}
 	
 	/**
@@ -71,10 +70,6 @@ public class Horse {
 	 */
 	public Set<Bonus> boni;
 	
-	/**
-	 * Missions your horse can do
-	 */
-	public Missions missions;
 
 	// Let the fun begin
 	/**
@@ -184,14 +179,11 @@ public class Horse {
 			tasks.sleep.available = !(split1[1].contains("coucher-box action-disabled") || split1[1].contains("coucher action-disabled"));
 			tasks.stroke.available = !split1[1].contains("caresser action-disabled");
 			tasks.suckle.available = characteristics.age.years == 0 && characteristics.age.months < 6 && !split1[1].contains("allaiter action-disabled");
-			
-			
+			tasks.centreMission.available = split1[1].contains("boutonMissionEquus") && !split1[1].contains("missionEquus action-disabled"); // TODO more efficient
 		
 			// Boni
 			// TODO all
 			
-			// Missions
-			// TODO all
 			
 		} catch(Exception e) {
 			throw new ApiException(e, "Couldn't update horse");
