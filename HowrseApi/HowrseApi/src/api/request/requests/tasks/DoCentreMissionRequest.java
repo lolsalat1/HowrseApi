@@ -9,7 +9,7 @@ import api.API;
 import api.ApiException;
 import api.request.requests.DefaultResponse;
 
-public class DoCentreMission {
+public class DoCentreMissionRequest {
 
 	public static DefaultResponse doRequest(int horseId, API api) throws ApiException { // TODO parse more from the response (as there is alot)
 		ArrayList<NameValuePair> parameters = new ArrayList<NameValuePair>();
