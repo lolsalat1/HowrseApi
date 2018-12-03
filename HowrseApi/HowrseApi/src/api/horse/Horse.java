@@ -15,6 +15,12 @@ public class Horse {
 
 	// TODO Care, Night, Rideout, Training, Competitions, Breeding, EquestrianCenter
 	
+	@Override
+	public String toString() {
+		return "Horse [name=" + name + ", id=" + id + "]";
+	}
+
+
 	/**
 	 * Id and name is enough at first, and if you want more the id does a great job
 	 */

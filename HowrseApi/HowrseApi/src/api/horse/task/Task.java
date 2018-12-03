@@ -7,6 +7,10 @@ import api.request.requests.DefaultResponse;
 
 public abstract class Task {
 
+	public String getName() {
+		return getClass().getSimpleName();
+	}
+	
 	/**
 	 * Can your horse perform this task?
 	 */
@@ -21,5 +25,10 @@ public abstract class Task {
 	}
 	
 	public abstract DefaultResponse performTask(Horse horse, API api) throws ApiException;
-	
+
+	@Override
+	public String toString() {
+		return "Task [Name=" + getName() + ", available=" + available + "]";
+	}
+
 }

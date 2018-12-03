@@ -1,5 +1,7 @@
 package api.horse;
 
+import java.util.HashSet;
+
 import api.API;
 import api.ApiException;
 import api.horse.task.Age;
@@ -13,6 +15,7 @@ import api.horse.task.Play;
 import api.horse.task.Sleep;
 import api.horse.task.Stroke;
 import api.horse.task.Suckle;
+import api.horse.task.Task;
 import api.request.requests.DefaultResponse;
 
 /**
@@ -34,6 +37,35 @@ public class Tasks {
 		age = new Age();
 		suckle = new Suckle();
 		centreMission = new CentreMission();
+	}
+	
+	private HashSet<Task> available = new HashSet<Task>();
+	
+	public HashSet<Task> getAvailable(Horse h){
+		available.clear();
+		if(feed.isAvailable(h))
+			available.add(feed);
+		if(drink.isAvailable(h))
+			available.add(drink);
+		if(stroke.isAvailable(h))
+			available.add(stroke);
+		if(groom.isAvailable(h))
+			available.add(groom);
+		if(carrot.isAvailable(h))
+			available.add(carrot);
+		if(mash.isAvailable(h))
+			available.add(mash);
+		if(play.isAvailable(h))
+			available.add(play);
+		if(sleep.isAvailable(h))
+			available.add(sleep);
+		if(age.isAvailable(h))
+			available.add(age);
+		if(suckle.isAvailable(h))
+			available.add(suckle);
+		if(centreMission.isAvailable(h))
+			available.add(centreMission);
+		return available;
 	}
 	
 	public DefaultResponse doCarrot(Horse horse, API api) throws ApiException {

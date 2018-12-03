@@ -30,6 +30,21 @@ public class Account {
 	 */
 	public int pass;
 
+	/**
+	 * Logged in
+	 */
+	public boolean loggedIn;
+	
+	public boolean logIn(String username, String password) {
+		try {
+			loggedIn = api.doLogin(username, password).sucess;
+			return loggedIn;
+		} catch(ApiException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public DefaultResponse logout() throws ApiException{
 		return MiscRequests.logout(api);
 	}

@@ -42,6 +42,10 @@ public class Age {
 	public String toString() {
 		return "Age [years=" + years + ", months=" + months + "]";
 	}
+
+	public int asMonths() {
+		return years*12+months;
+	}
 	
 	
 }
